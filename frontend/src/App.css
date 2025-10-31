@@ -1,0 +1,223 @@
+:root {
+  --bg: #0f0f10;
+  --card: #141414;
+  --muted: #1f1f1f;
+  --text: #e8eef2;
+  --accent: #23468b;
+  --outline: rgba(38, 93, 205, 0.9);
+}
+
+* { box-sizing: border-box; }
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ensure content sits below navbar */
+.page {
+  padding: 28px 28px 48px;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Layout: left preview, right column */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+  width: 1130px;
+}
+
+/* Card base */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 18px;
+  padding: 28px;
+  border: 2px solid rgba(255,255,255,0.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* preview card */
+.preview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 22px;
+  padding-top: 36px;
+  position: relative;
+  border: 3px solid rgba(45,106,187,0.18);
+}
+
+.title {
+  font-size: 36px;
+  margin: 0 0 18px 0;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* preview image/video */
+.preview-image-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 85%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  overflow: hidden;
+}
+.preview-image, .preview-video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  background: black;
+}
+
+/* right column */
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* transcript card */
+.transcript-card {
+  min-height: 360px;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.03);
+  background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.04));
+}
+
+.card-heading {
+  font-size: 20px;
+  margin: 0 0 12px 0;
+  color: #fff;
+}
+
+/* transcript list area */
+.transcript-list {
+  background: rgba(0,0,0,0.35);
+  border-radius: 10px;
+  padding: 14px;
+  height: 76%;
+  overflow-y: auto;
+  color: #d7dce0;
+  font-size: 15px;
+  line-height: 1.6;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.placeholder {
+  color: rgba(255,255,255,0.12);
+  font-style: italic;
+}
+
+/* final lines */
+.transcript-line {
+  margin: 10px 0;
+  color: #e6eef2;
+}
+
+/* interim (partial) text */
+.transcript-interim {
+  margin-top: 8px;
+  color: #bcd1d9;
+  opacity: 0.9;
+  font-style: italic;
+}
+
+/* minimal note when no interim text */
+.listening-note {
+  margin-top: 8px;
+  color: #8d9498;
+}
+
+/* mic card */
+.mic-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+  min-height: 180px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* mic center + button */
+.mic-center { display:flex; justify-content:center; width:100%; }
+.mic-button {
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: transparent;
+}
+.mic-svg { width: 100px; height: 100px; display:block; }
+.mic-button.listening { transform: scale(1.02); box-shadow: 0 10px 30px rgba(34,70,139,0.18); }
+
+/* mic actions row */
+.mic-actions {
+  margin-top: 16px;
+  width: 100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.clear-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #cbd5de;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.status-text {
+  color: #95a0a6;
+  font-size: 13px;
+  text-align: right;
+  flex: 1;
+}
+
+/* Error message style */
+.error-message {
+    color: #ff4444;
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+/* Hide video player controls */
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-moz-media-controls {
+  display: none !important;
+}
+video {
+  pointer-events: none; /* prevent accidental pause */
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: 1fr; width: 92%; }
+  .preview-image { height: 260px; }
+  .transcript-card { min-height: 260px; }
+}
